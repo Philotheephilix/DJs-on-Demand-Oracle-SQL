@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJs on Demand</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="tabs">
+            <button class="tablinks" onclick="openTab(event, 'DJManagement')" id="defaultOpen">DJ Management</button>
+            <button class="tablinks" onclick="openTab(event, 'ClientManagement')">Client Management</button>
+            <button class="tablinks" onclick="openTab(event, 'EventManagement')">Event Management</button>
+            <button class="tablinks" onclick="openTab(event, 'BookingManagement')">Booking Management</button>
+            <button class="tablinks" onclick="openTab(event, 'PaymentManagement')">Payment Management</button>
+        </div>
+
+        <!-- DJ Management Tab -->
+        <div id="DJManagement" class="tabcontent">
+            <h3>DJ Management</h3>
+            <button onclick="openModal('addDJModal')">Add DJ</button>
+            <button onclick="openModal('updateDJModal')">Update DJ Information</button>
+            <button onclick="openModal('deleteDJModal')">Delete DJ</button>
+            <button onclick="openModal('viewDJModal')">View DJ Profile</button>
+        </div>
+
+        <!-- Client Management Tab -->
+        <div id="ClientManagement" class="tabcontent">
+            <h3>Client Management</h3>
+            <button onclick="openModal('addClientModal')">Add Client</button>
+            <button onclick="openModal('updateClientModal')">Update Client Information</button>
+            <button onclick="openModal('deleteClientModal')">Delete Client</button>
+            <button onclick="openModal('viewClientModal')">View Client Profile</button>
+        </div>
+
+        <!-- Event Management Tab -->
+        <div id="EventManagement" class="tabcontent">
+            <h3>Event Management</h3>
+            <button onclick="openModal('createEventModal')">Create Event</button>
+            <button onclick="openModal('updateEventModal')">Update Event</button>
+            <button onclick="openModal('cancelEventModal')">Cancel Event</button>
+            <button onclick="openModal('viewEventModal')">View Event Details</button>
+        </div>
+
+        <!-- Booking Management Tab -->
+        <div id="BookingManagement" class="tabcontent">
+            <h3>Booking Management</h3>
+            <button onclick="openModal('newBookingModal')">New Booking</button>
+            <button onclick="openModal('updateBookingModal')">Update Booking</button>
+            <button onclick="openModal('cancelBookingModal')">Cancel Booking</button>
+            <button onclick="openModal('viewBookingModal')">View Booking Details</button>
+        </div>
+
+        <!-- Payment Management Tab -->
+        <div id="PaymentManagement" class="tabcontent">
+            <h3>Payment Management</h3>
+            <button onclick="openModal('addPaymentModal')">Add Payment</button>
+            <button onclick="openModal('updatePaymentModal')">Update Payment</button>
+            <button onclick="openModal('deletePaymentModal')">Delete Payment</button>
+            <button onclick="openModal('viewPaymentModal')">View Payment History</button>
+        </div>
+    </div>
+
+    <!-- Modals for DJ Management -->
+    <div id="addDJModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addDJModal')">&times;</span>
+            <h2>Add DJ</h2>
+            <form action="/add_dj" method="POST">
+                <label for="djName">Name:</label>
+                <input type="text" id="djName" name="djName"><br>
+                <label for="djGenre">Genre:</label>
+                <input type="text" id="djGenre" name="djGenre"><br>
+                <label for="djExperience">Experience (years):</label>
+                <input type="number" id="djExperience" name="djExperience"><br>
+                <button type="submit">Add DJ</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="updateDJModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('updateDJModal')">&times;</span>
+            <h2>Update DJ Information</h2>
+            <form action="/update_dj" method="POST">
+                <label for="djId">DJ ID:</label>
+                <input type="text" id="djId" name="djId"><br>
+                <label for="djName">Name:</label>
+                <input type="text" id="djName" name="djName"><br>
+                <label for="djGenre">Genre:</label>
+                <input type="text" id="djGenre" name="djGenre"><br>
+                <label for="djExperience">Experience (years):</label>
+                <input type="number" id="djExperience" name="djExperience"><br>
+                <button type="submit">Update DJ</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="deleteDJModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('deleteDJModal')">&times;</span>
+            <h2>Delete DJ</h2>
+            <form action="/delete_dj" method="POST">
+                <label for="djId">DJ ID:</label>
+                <input type="text" id="djId" name="djId"><br>
+                <button type="submit">Delete DJ</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="viewDJModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('viewDJModal')">&times;</span>
+            <h2>View DJ Profile</h2>
+            <form action="/view_dj" method="POST">
+                <label for="djId">DJ ID:</label>
+                <input type="text" id="djId" name="djId"><br>
+                <button type="submit">View DJ</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modals for Client Management -->
+    <div id="addClientModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addClientModal')">&times;</span>
+            <h2>Add Client</h2>
+            <form action="/add_client" method="POST">
+                <label for="clientName">Name:</label>
+                <input type="text" id="clientName" name="clientName"><br>
+                <label for="clientEmail">Email:</label>
+                <input type="email" id="clientEmail" name="clientEmail"><br>
+                <label for="clientPhone">Phone:</label>
+                <input type="text" id="clientPhone" name="clientPhone"><br>
+                <button type="submit">Add Client</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="updateClientModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('updateClientModal')">&times;</span>
+            <h2>Update Client Information</h2>
+            <form action="/update_client" method="POST">
+                <label for="clientId">Client ID:</label>
+                <input type="text" id="clientId" name="clientId"><br>
+                <label for="clientName">Name:</label>
+                <input type="text" id="clientName" name="clientName"><br>
+                <label for="clientEmail">Email:</label>
+                <input type="email" id="clientEmail" name="clientEmail"><br>
+                <label for="clientPhone">Phone:</label>
+                <input type="text" id="clientPhone" name="clientPhone"><br>
+                <button type="submit">Update Client</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="deleteClientModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('deleteClientModal')">&times;</span>
+            <h2>Delete Client</h2>
+            <form action="/delete_client" method="POST">
+                <label for="clientId">Client ID:</label>
+                <input type="text" id="clientId" name="clientId"><br>
+                <button type="submit">Delete Client</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="viewClientModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('viewClientModal')">&times;</span>
+            <h2>View Client Profile</h2>
+            <form action="/view_client" method="POST">
+                <label for="clientId">Client ID:</label>
+                <input type="text" id="clientId" name="clientId"><br>
+                <button type="submit">View Client</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modals for Event Management -->
+    <div id="createEventModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('createEventModal')">&times;</span>
+            <h2>Create Event</h2>
+            <form action="/create_event" method="POST">
+                <label for="eventName">Event Name:</label>
+                <input type="text" id="eventName" name="eventName"><br>
+                <label for="eventDate">Event Date:</label>
+                <input type="date" id="eventDate" name="eventDate"><br>
+                <label for="eventLocation">Event Location:</label>
+                <input type="text" id="eventLocation" name="eventLocation"><br>
+                <label for="assignedDJ">Assigned DJ:</label>
+                <input type="text" id="assignedDJ" name="assignedDJ"><br>
+                <button type="submit">Create Event</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="updateEventModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('updateEventModal')">&times;</span>
+            <h2>Update Event</h2>
+            <form action="/update_event" method="POST">
+                <label for="eventId">Event ID:</label>
+                <input type="text" id="eventId" name="eventId"><br>
+                <label for="eventName">Event Name:</label>
+                <input type="text" id="eventName" name="eventName"><br>
+                <label for="eventDate">Event Date:</label>
+                <input type="date" id="eventDate" name="eventDate"><br>
+                <label for="eventLocation">Event Location:</label>
+                <input type="text" id="eventLocation" name="eventLocation"><br>
+                <label for="assignedDJ">Assigned DJ:</label>
+                <input type="text" id="assignedDJ" name="assignedDJ"><br>
+                <button type="submit">Update Event</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="cancelEventModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cancelEventModal')">&times;</span>
+            <h2>Cancel Event</h2>
+            <form action="/cancel_event" method="POST">
+                <label for="eventId">Event ID:</label>
+                <input type="text" id="eventId" name="eventId"><br>
+                <button type="submit">Cancel Event</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="viewEventModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('viewEventModal')">&times;</span>
+            <h2>View Event Details</h2>
+            <form action="/view_event" method="POST">
+                <label for="eventId">Event ID:</label>
+                <input type="text" id="eventId" name="eventId"><br>
+                <button type="submit">View Event</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modals for Booking Management -->
+    <div id="newBookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('newBookingModal')">&times;</span>
+            <h2>New Booking</h2>
+            <form action="/new_booking" method="POST">
+                <label for="bookingClient">Client:</label>
+                <input type="text" id="bookingClient" name="bookingClient"><br>
+                <label for="bookingEvent">Event:</label>
+                <input type="text" id="bookingEvent" name="bookingEvent"><br>
+                <label for="bookingDJ">DJ:</label>
+                <input type="text" id="bookingDJ" name="bookingDJ"><br>
+                <label for="bookingDate">Date:</label>
+                <input type="date" id="bookingDate" name="bookingDate"><br>
+                <button type="submit">Create Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="updateBookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('updateBookingModal')">&times;</span>
+            <h2>Update Booking</h2>
+            <form action="/update_booking" method="POST">
+                <label for="bookingId">Booking ID:</label>
+                <input type="text" id="bookingId" name="bookingId"><br>
+                <label for="bookingClient">Client:</label>
+                <input type="text" id="bookingClient" name="bookingClient"><br>
+                <label for="bookingEvent">Event:</label>
+                <input type="text" id="bookingEvent" name="bookingEvent"><br>
+                <label for="bookingDJ">DJ:</label>
+                <input type="text" id="bookingDJ" name="bookingDJ"><br>
+                <label for="bookingDate">Date:</label>
+                <input type="date" id="bookingDate" name="bookingDate"><br>
+                <button type="submit">Update Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="cancelBookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cancelBookingModal')">&times;</span>
+            <h2>Cancel Booking</h2>
+            <form action="/cancel_booking" method="POST">
+                <label for="bookingId">Booking ID:</label>
+                <input type="text" id="bookingId" name="bookingId"><br>
+                <button type="submit">Cancel Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="viewBookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('viewBookingModal')">&times;</span>
+            <h2>View Booking Details</h2>
+            <form action="/view_booking" method="POST">
+                <label for="bookingId">Booking ID:</label>
+                <input type="text" id="bookingId" name="bookingId"><br>
+                <button type="submit">View Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modals for Payment Management -->
+    <div id="addPaymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addPaymentModal')">&times;</span>
+            <h2>Add Payment</h2>
+            <form action="/add_payment" method="POST">
+                <label for="paymentClient">Client:</label>
+                <input type="text" id="paymentClient" name="paymentClient"><br>
+                <label for="paymentAmount">Amount:</label>
+                <input type="number" id="paymentAmount" name="paymentAmount"><br>
+                <label for="paymentDate">Date:</label>
+                <input type="date" id="paymentDate" name="paymentDate"><br>
+                <button type="submit">Add Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="updatePaymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('updatePaymentModal')">&times;</span>
+            <h2>Update Payment</h2>
+            <form action="/update_payment" method="POST">
+                <label for="paymentId">Payment ID:</label>
+                <input type="text" id="paymentId" name="paymentId"><br>
+                <label for="paymentClient">Client:</label>
+                <input type="text" id="paymentClient" name="paymentClient"><br>
+                <label for="paymentAmount">Amount:</label>
+                <input type="number" id="paymentAmount" name="paymentAmount"><br>
+                <label for="paymentDate">Date:</label>
+                <input type="date" id="paymentDate" name="paymentDate"><br>
+                <button type="submit">Update Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="deletePaymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('deletePaymentModal')">&times;</span>
+            <h2>Delete Payment</h2>
+            <form action="/delete_payment" method="POST">
+                <label for="paymentId">Payment ID:</label>
+                <input type="text" id="paymentId" name="paymentId"><br>
+                <button type="submit">Delete Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="viewPaymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('viewPaymentModal')">&times;</span>
+            <h2>View Payment History</h2>
+            <form action="/view_payment" method="POST">
+                <label for="clientId">Client ID:</label>
+                <input type="text" id="clientId" name="clientId"><br>
+                <button type="submit">View Payment History</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="static/script.js"></script>
+</body>
+</html>
