@@ -1,6 +1,8 @@
 
 from flask import Flask, render_template, request, redirect, url_for, flash
 
+import dbConnect
+
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'  
 
@@ -24,6 +26,7 @@ def add_dj():
     djs.append({'name': dj_name, 'genre': dj_genre, 'experience': dj_experience})
     flash('DJ added successfully!')
     print(dj_name,dj_genre,dj_genre,dj_experience)
+    dbConnect.executeSQL("query")
     return redirect(url_for('home'))
 
 @app.route('/update_dj', methods=['POST'])
