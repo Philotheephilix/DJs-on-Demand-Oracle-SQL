@@ -5,8 +5,8 @@ import dbConnect
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'  
-
-
+db_config = dbConnect.read_db_config()
+dbConnect.execute_sql(db_config,"SELECT * from studentmaster") 
 djs = []
 clients = []
 events = []
@@ -65,32 +65,48 @@ def view_dj():
 # Client Management Routes
 @app.route('/add_client', methods=['POST'])
 def add_client():
+    client_id=str(request.form["clientId"])
     client_name = request.form['clientName']
     client_email = request.form['clientEmail']
-    client_phone = request.form['clientPhone']
+    client_phone =str( request.form['clientPhone'])
     clients.append({'name': client_name, 'email': client_email, 'phone': client_phone})
     flash('Client added successfully!')
+    query="INSERT INTO d_clients(client_number,first_name,last_name,phone,email) VALUES( "+client_id+",'"+client_name+"','"+client_name+"',"+client_phone+",'"+client_email+"')"
+    print(query)
+    db_config = dbConnect.read_db_config()
+    result=dbConnect.execute_sql(db_config,query)
+    
     return redirect(url_for('home'))
 
 @app.route('/update_client', methods=['POST'])
 def update_client():
-    client_id = int(request.form['clientId'])
-    if client_id < len(clients):
-        clients[client_id] = {
-            'name': request.form['clientName'],
-            'email': request.form['clientEmail'],
-            'phone': request.form['clientPhone']
-        }
-        flash('Client updated successfully!')
-    else:
-        flash('Client not found!')
+    if 1==1:
+        client_id = str(request.form['clientId'])
+        name =request.form['clientName'],
+        email= request.form['clientEmail'],
+        phone= str(request.form['clientPhone'])
+        print(client_id,name,phone,email)
+        query="UPDATE d_clients SET first_name = '"+name[0]+"', phone= "+phone+", email = '"+email[0]+"' WHERE client_number = "+client_id
+        print(query)
+        db_config = dbConnect.read_db_config()
+        result=dbConnect.execute_sql(db_config,query)
+        print("done")
+        flash("NOT UPDATED")
+        print("except")
     return redirect(url_for('home'))
 
 @app.route('/delete_client', methods=['POST'])
 def delete_client():
-    client_id = int(request.form['clientId'])
-    if client_id < len(clients):
-        clients.pop(client_id)
+    print("in")
+    client_id = str(request.form['clientId'])
+    if 1==1:
+        print("inin")
+        query="DELETE FROM d_clients WHERE client_number = "+client_id
+        print("ininin")
+        db_config = dbConnect.read_db_config()
+        print("inininin")
+        result=dbConnect.execute_sql(db_config,query)
+        print("done")
         flash('Client deleted successfully!')
     else:
         flash('Client not found!')
@@ -98,12 +114,28 @@ def delete_client():
 
 @app.route('/view_client', methods=['POST'])
 def view_client():
-    client_id = int(request.form['clientId'])
-    if client_id < len(clients):
-        flash(f"Client Profile: {clients[client_id]}")
-    else:
-        flash('Client not found!')
-    return redirect(url_for('home'))
+    client_id = str(request.form['clientId'])
+    query="select * from d_clients where client_number="+client_id
+    db_config = dbConnect.read_db_config()
+    print("inininin")
+    result=dbConnect.execute_sql(db_config,query)
+    print(result)
+    if result==[]:
+        data = {
+        "name": "",
+        "phone": "", 
+        "id": "",
+        "email": ""
+    }
+        return render_template('view.html', data=data)
+    id, first_name, last_name, phone, email = result[0]
+    data = {
+    "name": f"{first_name} {last_name}",
+    "phone": phone,
+    "id": str(id),
+    "email": email
+}
+    return render_template('view.html', data=data)
 
 # Event Management Routes
 @app.route('/create_event', methods=['POST'])

@@ -17,22 +17,37 @@ def read_db_config():
         return None
     return db_config
 
-def executeSQL(query):
+def execute_sql(db_config, sql):
     try:
-        db_config = read_db_config()
-        if db_config:
-            pass
-        else:
-            print("Failed to read database configuration.")
         connection = cx_Oracle.connect(user=db_config['username'], password=db_config['password'], dsn=db_config['dsn'])
         cursor = connection.cursor()
-        cursor.execute(query)
-        tables = cursor.fetchall()
-        if tables:
-            return tables
+        cursor.execute(sql)
+        
+        if sql.strip().lower().startswith("select"):
+            result=[]
+            result = cursor.fetchall()
+            if result:
+                for row in result:
+                    print(row)
+            else:
+                print("No results found.")
         else:
-            print("No tables found in the database.")
+            connection.commit()
+            print("SQL statement executed successfully.")
+        
         cursor.close()
         connection.close()
+        return result
     except cx_Oracle.DatabaseError as e:
-        print(f"Error connecting to Oracle Database: {e}")
+        print(f"Error executing SQL statement: {e}")
+
+if __name__ == "__main__":
+    db_config = read_db_config()
+    if db_config:
+        # Example usage:
+        execute_sql(db_config, "SELECT * FROM studentmaster")  # Select query
+        execute_sql(db_config, "INSERT INTO studentmaster (id, name) VALUES (1, 'John Doe')")  # Insert query
+        execute_sql(db_config, "UPDATE studentmaster SET name='Jane Doe' WHERE id=1")  # Update query
+        execute_sql(db_config, "DELETE FROM studentmaster WHERE id=1")  # Delete query
+    else:
+        print("Failed to read database configuration.")
