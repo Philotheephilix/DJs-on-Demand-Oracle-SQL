@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.secret_key = 'supersecretkey'  
 db_config = dbConnect.read_db_config()
 dbConnect.execute_sql(db_config,"SELECT * from studentmaster") 
-djs = []
+Packagess = []
 clients = []
 events = []
 bookings = []
@@ -18,48 +18,28 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/add_dj', methods=['POST'])
-def add_dj():
-    dj_name = request.form['djName']
-    dj_genre = request.form['djGenre']
-    dj_experience = request.form['djExperience']
-    djs.append({'name': dj_name, 'genre': dj_genre, 'experience': dj_experience})
-    flash('DJ added successfully!')
-    print(dj_name,dj_genre,dj_genre,dj_experience)
-    dbConnect.executeSQL("query")
+@app.route('/add_Packages', methods=['POST'])
+def add_Packages():
+    Packages_name = request.form['PackagesName']
+    Low_Range = request.form['Low_Range']
+    High_Range = request.form['High_Range']
     return redirect(url_for('home'))
 
-@app.route('/update_dj', methods=['POST'])
-def update_dj():
-    dj_id = int(request.form['djId'])
-    if dj_id < len(djs):
-        djs[dj_id] = {
-            'name': request.form['djName'],
-            'genre': request.form['djGenre'],
-            'experience': request.form['djExperience']
-        }
-        flash('DJ updated successfully!')
-    else:
-        flash('DJ not found!')
+@app.route('/update_Packages', methods=['POST'])
+def update_Packages():
+    Packages_name = request.form['PackagesName']
+    Low_Range = request.form['Low_Range']
+    High_Range = request.form['High_Range']
     return redirect(url_for('home'))
 
-@app.route('/delete_dj', methods=['POST'])
-def delete_dj():
-    dj_id = int(request.form['djId'])
-    if dj_id < len(djs):
-        djs.pop(dj_id)
-        flash('DJ deleted successfully!')
-    else:
-        flash('DJ not found!')
+@app.route('/delete_Packages', methods=['POST'])
+def delete_Packages():
+    Packages_name = request.form['PackagesName']
     return redirect(url_for('home'))
 
-@app.route('/view_dj', methods=['POST'])
-def view_dj():
-    dj_id = int(request.form['djId'])
-    if dj_id < len(djs):
-        flash(f"DJ Profile: {djs[dj_id]}")
-    else:
-        flash('DJ not found!')
+@app.route('/view_Packages', methods=['POST'])
+def view_Packages():
+    Packages_name = request.form['PackagesName']
     return redirect(url_for('home'))
 
 # Client Management Routes
@@ -140,91 +120,67 @@ def view_client():
 # Event Management Routes
 @app.route('/create_event', methods=['POST'])
 def create_event():
+    event_id = str(request.form['eventId'])
     event_name = request.form['eventName']
-    event_date = request.form['eventDate']
-    event_location = request.form['eventLocation']
-    assigned_dj = request.form['assignedDJ']
-    events.append({'name': event_name, 'date': event_date, 'location': event_location, 'dj': assigned_dj})
+    event_date = str(request.form['eventDate'])
+    event_desc = request.form['eventLocation']
+    event_cost = str(request.form['assignedDj'])
+    venue=str(request.form['eventVenue'])
+    PACKAGE_CODE=str(request.form['PACKAGE_CODE'])
+    THEME_CODE=str(request.form['THEME_CODE'])
+    CLIENT_NUMBER=str(request.form['CLIENT_NUMBER'])
+    query="INSERT INTO d_clients(client_number,first_name,last_name,phone,email) VALUES( "+event_id+",'"+event_name+"','"+event_date+"',"+event_desc+",'"+event_cost+"')"
+    print(query)
+    db_config = dbConnect.read_db_config()
+    result=dbConnect.execute_sql(db_config,query)
     flash('Event created successfully!')
     return redirect(url_for('home'))
 
 @app.route('/update_event', methods=['POST'])
 def update_event():
-    event_id = int(request.form['eventId'])
-    if event_id < len(events):
-        events[event_id] = {
-            'name': request.form['eventName'],
-            'date': request.form['eventDate'],
-            'location': request.form['eventLocation'],
-            'dj': request.form['assignedDJ']
-        }
-        flash('Event updated successfully!')
-    else:
-        flash('Event not found!')
+    event_id = str(request.form['eventId'])
+    event_name = request.form['eventName']
+    event_date = str(request.form['eventDate'])
+    event_desc = request.form['eventLocation']
+    event_cost = str(request.form['assignedDj'])
+    venue=str(request.form['eventVenue'])
+    PACKAGE_CODE=str(request.form['PACKAGE_CODE'])
+    THEME_CODE=str(request.form['THEME_CODE'])
+    CLIENT_NUMBER=str(request.form['CLIENT_NUMBER'])
     return redirect(url_for('home'))
 
 @app.route('/cancel_event', methods=['POST'])
 def cancel_event():
-    event_id = int(request.form['eventId'])
-    if event_id < len(events):
-        events.pop(event_id)
-        flash('Event cancelled successfully!')
-    else:
-        flash('Event not found!')
+    event_id = str(request.form['eventId'])
     return redirect(url_for('home'))
 
 @app.route('/view_event', methods=['POST'])
 def view_event():
-    event_id = int(request.form['eventId'])
-    if event_id < len(events):
-        flash(f"Event Details: {events[event_id]}")
-    else:
-        flash('Event not found!')
+    event_id = str(request.form['eventId'])
     return redirect(url_for('home'))
 
 # Booking Management Routes
 @app.route('/new_booking', methods=['POST'])
 def new_booking():
-    booking_client = request.form['bookingClient']
-    booking_event = request.form['bookingEvent']
-    booking_dj = request.form['bookingDJ']
-    booking_date = request.form['bookingDate']
-    bookings.append({'client': booking_client, 'event': booking_event, 'dj': booking_dj, 'date': booking_date})
+    Theme_desc = request.form['bookingClient']
+    Theme_id = request.form['bookingId']
     flash('Booking created successfully!')
     return redirect(url_for('home'))
 
 @app.route('/update_booking', methods=['POST'])
 def update_booking():
-    booking_id = int(request.form['bookingId'])
-    if booking_id < len(bookings):
-        bookings[booking_id] = {
-            'client': request.form['bookingClient'],
-            'event': request.form['bookingEvent'],
-            'dj': request.form['bookingDJ'],
-            'date': request.form['bookingDate']
-        }
-        flash('Booking updated successfully!')
-    else:
-        flash('Booking not found!')
+    Theme_desc = request.form['bookingClient']
+    Theme_id = request.form['bookingId']
     return redirect(url_for('home'))
 
 @app.route('/cancel_booking', methods=['POST'])
 def cancel_booking():
-    booking_id = int(request.form['bookingId'])
-    if booking_id < len(bookings):
-        bookings.pop(booking_id)
-        flash('Booking cancelled successfully!')
-    else:
-        flash('Booking not found!')
+    Theme_id = request.form['bookingId']
     return redirect(url_for('home'))
 
 @app.route('/view_booking', methods=['POST'])
 def view_booking():
-    booking_id = int(request.form['bookingId'])
-    if booking_id < len(bookings):
-        flash(f"Booking Details: {bookings[booking_id]}")
-    else:
-        flash('Booking not found!')
+    Theme_id = request.form['bookingId']
     return redirect(url_for('home'))
 
 # Payment Management Routes

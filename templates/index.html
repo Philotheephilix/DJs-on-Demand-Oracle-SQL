@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DJs on Demand</title>
+    <title>Packagess on Demand</title>
     <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
     <div class="container">
         <div class="tabs">
-            <button class="tablinks" onclick="openTab(event, 'DJManagement')" id="defaultOpen">DJ Management</button>
+            <button class="tablinks" onclick="openTab(event, 'PackagesManagement')" id="defaultOpen">Packages Management</button>
             <button class="tablinks" onclick="openTab(event, 'ClientManagement')">Client Management</button>
             <button class="tablinks" onclick="openTab(event, 'EventManagement')">Event Management</button>
-            <button class="tablinks" onclick="openTab(event, 'BookingManagement')">Booking Management</button>
-            <button class="tablinks" onclick="openTab(event, 'PaymentManagement')">Payment Management</button>
+            <button class="tablinks" onclick="openTab(event, 'BookingManagement')">Theme Management</button>
+            <button class="tablinks" onclick="openTab(event, 'CDManagement')">CD Management</button>
         </div>
 
-        <!-- DJ Management Tab -->
-        <div id="DJManagement" class="tabcontent">
-            <h3>DJ Management</h3>
-            <button onclick="openModal('addDJModal')">Add DJ</button>
-            <button onclick="openModal('updateDJModal')">Update DJ Information</button>
-            <button onclick="openModal('deleteDJModal')">Delete DJ</button>
-            <button onclick="openModal('viewDJModal')">View DJ Profile</button>
+        <!-- Packages Management Tab -->
+        <div id="PackagesManagement" class="tabcontent">
+            <h3>Packages Management</h3>
+            <button onclick="openModal('addPackagesModal')">Add Packages</button>
+            <button onclick="openModal('updatePackagesModal')">Update Packages Information</button>
+            <button onclick="openModal('deletePackagesModal')">Delete Packages</button>
+            <button onclick="openModal('viewPackagesModal')">View Packages Profile</button>
         </div>
 
         <!-- Client Management Tab -->
@@ -46,77 +46,75 @@
         <!-- Booking Management Tab -->
         <div id="BookingManagement" class="tabcontent">
             <h3>Booking Management</h3>
-            <button onclick="openModal('newBookingModal')">New Booking</button>
-            <button onclick="openModal('updateBookingModal')">Update Booking</button>
-            <button onclick="openModal('cancelBookingModal')">Cancel Booking</button>
-            <button onclick="openModal('viewBookingModal')">View Booking Details</button>
+            <button onclick="openModal('newBookingModal')">New Theme</button>
+            <button onclick="openModal('updateBookingModal')">Update Theme</button>
+            <button onclick="openModal('cancelBookingModal')">Delete Theme</button>
+            <button onclick="openModal('viewBookingModal')">View Theme Details</button>
         </div>
 
-        <!-- Payment Management Tab -->
-        <div id="PaymentManagement" class="tabcontent">
-            <h3>Payment Management</h3>
-            <button onclick="openModal('addPaymentModal')">Add Payment</button>
-            <button onclick="openModal('updatePaymentModal')">Update Payment</button>
-            <button onclick="openModal('deletePaymentModal')">Delete Payment</button>
-            <button onclick="openModal('viewPaymentModal')">View Payment History</button>
+        <!-- CD Management Tab -->
+        <div id="CDManagement" class="tabcontent">
+            <h3>CD Management</h3>
+            <button onclick="openModal('addCDModal')">Add CD</button>
+            <button onclick="openModal('updateCDModal')">Update CD</button>
+            <button onclick="openModal('deleteCDModal')">Delete CD</button>
+            <button onclick="openModal('viewCDModal')">View CD History</button>
         </div>
     </div>
 
-    <!-- Modals for DJ Management -->
-    <div id="addDJModal" class="modal">
+    <!-- Modals for Packages Management -->
+    <div id="addPackagesModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('addDJModal')">&times;</span>
-            <h2>Add DJ</h2>
-            <form action="/add_dj" method="POST">
-                <label for="djName">Name:</label>
-                <input type="text" id="djName" name="djName"><br>
-                <label for="djGenre">Genre:</label>
-                <input type="text" id="djGenre" name="djGenre"><br>
-                <label for="djExperience">Experience (years):</label>
-                <input type="number" id="djExperience" name="djExperience"><br>
-                <button type="submit">Add DJ</button>
+            <span class="close" onclick="closeModal('addPackagesModal')">&times;</span>
+            <h2>Add Packages</h2>
+            <form action="/add_Packages" method="POST">
+                <label for="PackagesName">Code:</label>
+                <input type="text" id="PackagesName" name="PackagesName"><br>
+                <label for="Low_Range">Low_Range:</label>
+                <input type="text" id="Low_Range" name="Low_Range"><br>
+                <label for="High_Range">High_Range:</label>
+                <input type="number" id="High_Range" name="High_Range"><br>
+                <button type="submit">Add Packages</button>
             </form>
         </div>
     </div>
 
-    <div id="updateDJModal" class="modal">
+    <div id="updatePackagesModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('updateDJModal')">&times;</span>
-            <h2>Update DJ Information</h2>
-            <form action="/update_dj" method="POST">
-                <label for="djId">DJ ID:</label>
-                <input type="text" id="djId" name="djId"><br>
-                <label for="djName">Name:</label>
-                <input type="text" id="djName" name="djName"><br>
-                <label for="djGenre">Genre:</label>
-                <input type="text" id="djGenre" name="djGenre"><br>
-                <label for="djExperience">Experience (years):</label>
-                <input type="number" id="djExperience" name="djExperience"><br>
-                <button type="submit">Update DJ</button>
+            <span class="close" onclick="closeModal('updatePackagesModal')">&times;</span>
+            <h2>Update Packages Information</h2>
+            <form action="/update_Packages" method="POST">
+                <label for="PackagesName">Code:</label>
+                <input type="text" id="PackagesName" name="PackagesName"><br>
+                <label for="Low_Range">Low_Range:</label>
+                <input type="text" id="Low_Range" name="Low_Range"><br>
+                <label for="High_Range">High_Range:</label>
+                <input type="number" id="High_Range" name="High_Range"><br>
+                <button type="submit">Update Packages</button>
             </form>
         </div>
     </div>
 
-    <div id="deleteDJModal" class="modal">
+    <div id="deletePackagesModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('deleteDJModal')">&times;</span>
-            <h2>Delete DJ</h2>
-            <form action="/delete_dj" method="POST">
-                <label for="djId">DJ ID:</label>
-                <input type="text" id="djId" name="djId"><br>
-                <button type="submit">Delete DJ</button>
+            <span class="close" onclick="closeModal('deletePackagesModal')">&times;</span>
+            <h2>Delete Packages</h2>
+            <form action="/delete_Packages" method="POST">
+                <label for="PackagesName">Code:</label>
+                <input type="text" id="PackagesName" name="PackagesName"><br>
+                <button type="submit">Delete Packages</button>
             </form>
         </div>
     </div>
 
-    <div id="viewDJModal" class="modal">
+    <div id="viewPackagesModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('viewDJModal')">&times;</span>
-            <h2>View DJ Profile</h2>
-            <form action="/view_dj" method="POST">
-                <label for="djId">DJ ID:</label>
-                <input type="text" id="djId" name="djId"><br>
-                <button type="submit">View DJ</button>
+            <span class="close" onclick="closeModal('viewPackagesModal')">&times;</span>
+            <h2>View Packages Profile</h2>
+            <form action="/view_Packages" method="POST">
+                <label for="PackagesName">Code:</label>
+                <input type="text" id="PackagesName" name="PackagesName"><br>
+                <button type="submit">View Packages</button>
             </form>
         </div>
     </div>
@@ -188,14 +186,24 @@
             <span class="close" onclick="closeModal('createEventModal')">&times;</span>
             <h2>Create Event</h2>
             <form action="/create_event" method="POST">
+                <label for="eventId">Event Id:</label>
+                <input type="text" id="eventId" name="eventId"><br>
                 <label for="eventName">Event Name:</label>
                 <input type="text" id="eventName" name="eventName"><br>
                 <label for="eventDate">Event Date:</label>
                 <input type="date" id="eventDate" name="eventDate"><br>
-                <label for="eventLocation">Event Location:</label>
+                <label for="eventLocation">Event Desc:</label>
                 <input type="text" id="eventLocation" name="eventLocation"><br>
-                <label for="assignedDJ">Assigned DJ:</label>
-                <input type="text" id="assignedDJ" name="assignedDJ"><br>
+                <label for="assignedDj">Cost:</label>
+                <input type="text" id="assignedDj" name="assignedPackages"><br>
+                <label for="eventVenue">Event Venue:</label>
+                <input type="date" id="eventVenue" name="eventVenue"><br>
+                <label for="PACKAGE_CODE">PACKAGE CODE:</label>
+                <input type="text" id="PACKAGE_CODE" name="PACKAGE_CODE"><br>
+                <label for="THEME_CODE">THEME CODE:</label>
+                <input type="text" id="THEME_CODE" name="THEME_CODE"><br>
+                <label for="CLIENT_NUMBER">CLIENT NUMBER:</label>
+                <input type="text" id="CLIENT_NUMBER" name="CLIENT_NUMBER"><br>
                 <button type="submit">Create Event</button>
             </form>
         </div>
@@ -206,16 +214,24 @@
             <span class="close" onclick="closeModal('updateEventModal')">&times;</span>
             <h2>Update Event</h2>
             <form action="/update_event" method="POST">
-                <label for="eventId">Event ID:</label>
+                <label for="eventId">Event Id:</label>
                 <input type="text" id="eventId" name="eventId"><br>
                 <label for="eventName">Event Name:</label>
                 <input type="text" id="eventName" name="eventName"><br>
                 <label for="eventDate">Event Date:</label>
                 <input type="date" id="eventDate" name="eventDate"><br>
-                <label for="eventLocation">Event Location:</label>
+                <label for="eventLocation">Event Desc:</label>
                 <input type="text" id="eventLocation" name="eventLocation"><br>
-                <label for="assignedDJ">Assigned DJ:</label>
-                <input type="text" id="assignedDJ" name="assignedDJ"><br>
+                <label for="assignedDj">Cost:</label>
+                <input type="text" id="assignedDj" name="assignedPackages"><br>
+                <label for="eventVenue">Event Venue:</label>
+                <input type="date" id="eventVenue" name="eventVenue"><br>
+                <label for="PACKAGE_CODE">PACKAGE CODE:</label>
+                <input type="text" id="PACKAGE_CODE" name="PACKAGE_CODE"><br>
+                <label for="THEME_CODE">THEME CODE:</label>
+                <input type="text" id="THEME_CODE" name="THEME_CODE"><br>
+                <label for="CLIENT_NUMBER">CLIENT NUMBER:</label>
+                <input type="text" id="CLIENT_NUMBER" name="CLIENT_NUMBER"><br>
                 <button type="submit">Update Event</button>
             </form>
         </div>
@@ -249,17 +265,13 @@
     <div id="newBookingModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('newBookingModal')">&times;</span>
-            <h2>New Booking</h2>
+            <h2>New Theme</h2>
             <form action="/new_booking" method="POST">
-                <label for="bookingClient">Client:</label>
+                <label for="bookingId">Theme ID:</label>
+                <input type="text" id="bookingId" name="bookingId"><br>
+                <label for="bookingClient">Theme Desc:</label>
                 <input type="text" id="bookingClient" name="bookingClient"><br>
-                <label for="bookingEvent">Event:</label>
-                <input type="text" id="bookingEvent" name="bookingEvent"><br>
-                <label for="bookingDJ">DJ:</label>
-                <input type="text" id="bookingDJ" name="bookingDJ"><br>
-                <label for="bookingDate">Date:</label>
-                <input type="date" id="bookingDate" name="bookingDate"><br>
-                <button type="submit">Create Booking</button>
+                <button type="submit">Create Theme</button>
             </form>
         </div>
     </div>
@@ -267,19 +279,13 @@
     <div id="updateBookingModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('updateBookingModal')">&times;</span>
-            <h2>Update Booking</h2>
+            <h2>Update Theme</h2>
             <form action="/update_booking" method="POST">
-                <label for="bookingId">Booking ID:</label>
+                <label for="bookingId">Theme ID:</label>
                 <input type="text" id="bookingId" name="bookingId"><br>
-                <label for="bookingClient">Client:</label>
+                <label for="bookingClient">Theme Desc:</label>
                 <input type="text" id="bookingClient" name="bookingClient"><br>
-                <label for="bookingEvent">Event:</label>
-                <input type="text" id="bookingEvent" name="bookingEvent"><br>
-                <label for="bookingDJ">DJ:</label>
-                <input type="text" id="bookingDJ" name="bookingDJ"><br>
-                <label for="bookingDate">Date:</label>
-                <input type="date" id="bookingDate" name="bookingDate"><br>
-                <button type="submit">Update Booking</button>
+                <button type="submit">Update Theme</button>
             </form>
         </div>
     </div>
@@ -287,11 +293,11 @@
     <div id="cancelBookingModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('cancelBookingModal')">&times;</span>
-            <h2>Cancel Booking</h2>
+            <h2>Delete Theme</h2>
             <form action="/cancel_booking" method="POST">
-                <label for="bookingId">Booking ID:</label>
+                <label for="bookingId">Theme ID:</label>
                 <input type="text" id="bookingId" name="bookingId"><br>
-                <button type="submit">Cancel Booking</button>
+                <button type="submit">Cancel Theme</button>
             </form>
         </div>
     </div>
@@ -299,70 +305,63 @@
     <div id="viewBookingModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('viewBookingModal')">&times;</span>
-            <h2>View Booking Details</h2>
+            <h2>View Theme Details</h2>
             <form action="/view_booking" method="POST">
-                <label for="bookingId">Booking ID:</label>
+                <label for="bookingId">Theme ID:</label>
                 <input type="text" id="bookingId" name="bookingId"><br>
-                <button type="submit">View Booking</button>
+                <button type="submit">View Theme</button>
             </form>
         </div>
     </div>
 
-    <!-- Modals for Payment Management -->
-    <div id="addPaymentModal" class="modal">
+    <!-- Modals for CD Management -->
+    <div id="addCDModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('addPaymentModal')">&times;</span>
-            <h2>Add Payment</h2>
-            <form action="/add_payment" method="POST">
-                <label for="paymentClient">Client:</label>
-                <input type="text" id="paymentClient" name="paymentClient"><br>
-                <label for="paymentAmount">Amount:</label>
-                <input type="number" id="paymentAmount" name="paymentAmount"><br>
-                <label for="paymentDate">Date:</label>
-                <input type="date" id="paymentDate" name="paymentDate"><br>
-                <button type="submit">Add Payment</button>
+            <span class="close" onclick="closeModal('addCDModal')">&times;</span>
+            <h2>Add CD</h2>
+            <form action="/add_CD" method="POST">
+                <laSong
+                Song
+                Song
+                Song
+                Songbel for="CDId">CD ID:</label>
+                <input type="text" id="CDId" name="CDId"><br>
+                <label for="CDClient">Title:</label>
+                <input type="text" id="CDClient" name="CDClient"><br>
+                <label for="CDAmount">Year:</label>
+                <input type="number" id="CDAmount" name="CDAmount"><br>
+                <button type="submit">Add CD</button>
+            </form>
+        </div>Song
+        Song
+        Song
+        Song
+        Song<input type="number" id="CDAmount" name="CDAmount"><br>
+                <button type="submit">Update CD</button>
             </form>
         </div>
     </div>
 
-    <div id="updatePaymentModal" class="modal">
+    <div id="deleteCDModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('updatePaymentModal')">&times;</span>
-            <h2>Update Payment</h2>
-            <form action="/update_payment" method="POST">
-                <label for="paymentId">Payment ID:</label>
-                <input type="text" id="paymentId" name="paymentId"><br>
-                <label for="paymentClient">Client:</label>
-                <input type="text" id="paymentClient" name="paymentClient"><br>
-                <label for="paymentAmount">Amount:</label>
-                <input type="number" id="paymentAmount" name="paymentAmount"><br>
-                <label for="paymentDate">Date:</label>
-                <input type="date" id="paymentDate" name="paymentDate"><br>
-                <button type="submit">Update Payment</button>
+            <span class="close" onclick="closeModal('deleteCDModal')">&times;</span>
+            <h2>Delete CD</h2>
+            <form action="/delete_CD" method="POST">
+                <label for="CDId">CD ID:</label>
+                <input type="text" id="CDId" name="CDId"><br>
+                <button type="submit">Delete CD</button>
             </form>
         </div>
     </div>
 
-    <div id="deletePaymentModal" class="modal">
+    <div id="viewCDModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('deletePaymentModal')">&times;</span>
-            <h2>Delete Payment</h2>
-            <form action="/delete_payment" method="POST">
-                <label for="paymentId">Payment ID:</label>
-                <input type="text" id="paymentId" name="paymentId"><br>
-                <button type="submit">Delete Payment</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="viewPaymentModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('viewPaymentModal')">&times;</span>
-            <h2>View Payment History</h2>
-            <form action="/view_payment" method="POST">
-                <label for="clientId">Client ID:</label>
+            <span class="close" onclick="closeModal('viewCDModal')">&times;</span>
+            <h2>View CD History</h2>
+            <form action="/view_CD" method="POST">
+                <label for="clientId">CD ID:</label>
                 <input type="text" id="clientId" name="clientId"><br>
-                <button type="submit">View Payment History</button>
+                <button type="submit">View CD History</button>
             </form>
         </div>
     </div>
