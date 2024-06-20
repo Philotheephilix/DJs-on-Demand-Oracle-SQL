@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Packagess on Demand</title>
+    <title>DJ's on Demand</title>
     <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
@@ -69,9 +69,9 @@
             <h2>Add Packages</h2>
             <form action="/add_Packages" method="POST">
                 <label for="PackagesName">Code:</label>
-                <input type="text" id="PackagesName" name="PackagesName"><br>
+                <input type="number" id="PackagesName" name="PackagesName"><br>
                 <label for="Low_Range">Low_Range:</label>
-                <input type="text" id="Low_Range" name="Low_Range"><br>
+                <input type="number" id="Low_Range" name="Low_Range"><br>
                 <label for="High_Range">High_Range:</label>
                 <input type="number" id="High_Range" name="High_Range"><br>
                 <button type="submit">Add Packages</button>
@@ -85,9 +85,9 @@
             <h2>Update Packages Information</h2>
             <form action="/update_Packages" method="POST">
                 <label for="PackagesName">Code:</label>
-                <input type="text" id="PackagesName" name="PackagesName"><br>
+                <input type="number" id="PackagesName" name="PackagesName"><br>
                 <label for="Low_Range">Low_Range:</label>
-                <input type="text" id="Low_Range" name="Low_Range"><br>
+                <input type="number" id="Low_Range" name="Low_Range"><br>
                 <label for="High_Range">High_Range:</label>
                 <input type="number" id="High_Range" name="High_Range"><br>
                 <button type="submit">Update Packages</button>
@@ -101,7 +101,7 @@
             <h2>Delete Packages</h2>
             <form action="/delete_Packages" method="POST">
                 <label for="PackagesName">Code:</label>
-                <input type="text" id="PackagesName" name="PackagesName"><br>
+                <input type="number" id="PackagesName" name="PackagesName"><br>
                 <button type="submit">Delete Packages</button>
             </form>
         </div>
@@ -113,7 +113,7 @@
             <h2>View Packages Profile</h2>
             <form action="/view_Packages" method="POST">
                 <label for="PackagesName">Code:</label>
-                <input type="text" id="PackagesName" name="PackagesName"><br>
+                <input type="number" id="PackagesName" name="PackagesName"><br>
                 <button type="submit">View Packages</button>
             </form>
         </div>
@@ -320,11 +320,7 @@
             <span class="close" onclick="closeModal('addCDModal')">&times;</span>
             <h2>Add CD</h2>
             <form action="/add_CD" method="POST">
-                <laSong
-                Song
-                Song
-                Song
-                Songbel for="CDId">CD ID:</label>
+                <label for="CDId">CD ID:</label>
                 <input type="text" id="CDId" name="CDId"><br>
                 <label for="CDClient">Title:</label>
                 <input type="text" id="CDClient" name="CDClient"><br>
@@ -332,15 +328,23 @@
                 <input type="number" id="CDAmount" name="CDAmount"><br>
                 <button type="submit">Add CD</button>
             </form>
-        </div>Song
-        Song
-        Song
-        Song
-        Song<input type="number" id="CDAmount" name="CDAmount"><br>
-                <button type="submit">Update CD</button>
-            </form>
         </div>
     </div>
+        <div id="updateCDModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('updateCDModal')">&times;</span>
+                <h2>Update CD</h2>
+                <form action="/update_CD" method="POST">
+                    <label for="CDId">CD ID:</label>
+                    <input type="text" id="CDId" name="CDId"><br>
+                    <label for="CDClient">Title:</label>
+                    <input type="text" id="CDClient" name="CDClient"><br>
+                    <label for="CDAmount">Year:</label>
+                    <input type="number" id="CDAmount" name="CDAmount"><br>
+                    <button type="submit">Update CD</button>
+                </form>
+            </div>
+        </div>
 
     <div id="deleteCDModal" class="modal">
         <div class="modal-content">
@@ -365,6 +369,7 @@
             </form>
         </div>
     </div>
+
 
     <script src="static/script.js"></script>
 </body>
