@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Info</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .container h1 {
+            margin-bottom: 20px;
+        }
+        .container p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Event Information</h1>
+        <p><strong>Event Id:</strong> {{ data.id }}</p>
+        <p><strong>Name:</strong> {{ data.name }}</p>
+        <p><strong>Date:</strong> {{ data.date }}</p>
+        <p><strong>Desc:</strong> {{ data.desc }}</p>
+        <p><strong>Cost:</strong> {{ data.cost }}</p>
+        <p><strong>Venue:</strong> {{ data.venue }}</p>
+        <p><strong>Package code:</strong> {{ data.pack }}</p>
+        <p><strong>Theme Coded:</strong> {{ data.theme }}</p>
+        <p><strong>Client Number:</strong> {{ data.client }}</p>
+    </div>
+</body>
+</html>

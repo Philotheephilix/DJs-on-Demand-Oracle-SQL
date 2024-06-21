@@ -124,7 +124,7 @@ def view_client():
     }
         return render_template('view.html', data=data)
     except:
-        return render_template('view.html', data=data)
+        return render_template('404.html')
 # Event Management Routes
 @app.route('/create_event', methods=['POST'])
 def create_event():
@@ -172,6 +172,26 @@ def cancel_event():
 @app.route('/view_event', methods=['POST'])
 def view_event():
     event_id = str(request.form['eventId'])
+    query="select * from d_events where code="+event_id
+    db_config = dbConnect.read_db_config()
+    result=dbConnect.execute_sql(db_config,query)
+    try:
+        id, name, date,desc,cost,venue,pack,theme,client = result[0]
+        data = {
+        "id": f"{id}",
+        "name": f"{name}",
+        "date": str(date),
+        "desc": f"{desc}",
+        "cost": f"{cost}",
+        "venue": f"{venue}",
+        "pack": f"{pack}",
+        "theme": f"{theme}",
+        "client": f"{client}"
+    }   
+        return render_template('viewEvent.html', data=data)
+        
+    except:    
+        return render_template('404.html')
     return redirect(url_for('home'))
 
 # Booking Management Routes
@@ -203,7 +223,21 @@ def cancel_booking():
 
 @app.route('/view_booking', methods=['POST'])
 def view_booking():
-    Theme_id = str(request.form['bookingId'])
+    theme_id = str(request.form['bookingId'])
+    query="select * from D_THEMES where code="+theme_id
+    db_config = dbConnect.read_db_config()
+    result=dbConnect.execute_sql(db_config,query)
+
+    try:
+        code, desc = result[0]
+        data = {
+        "code": f"{id}",
+        "desc": f"{desc}"
+    }   
+        return render_template('viewTheme.html', data=data)
+        
+    except:    
+        return render_template('404.html')
     return redirect(url_for('home'))
 
 # Payment Management Routes
@@ -237,6 +271,21 @@ def delete_payment():
 @app.route('/view_payment', methods=['POST'])
 def view_payment():
     id = request.form['CDId']
+    query="select * from D_CDS where code="+id
+    db_config = dbConnect.read_db_config()
+    result=dbConnect.execute_sql(db_config,query)
+
+    try:
+        id, title, producer,year = result[0]
+        data = {
+        "id": f"{id}",
+        "year": f"{year}",
+        "title":f"{title}"
+    }   
+        return render_template('viewCd.html', data=data)
+        
+    except:    
+        return render_template('404.html')
     return redirect(url_for('home'))
 
 if __name__ == '__main__':
