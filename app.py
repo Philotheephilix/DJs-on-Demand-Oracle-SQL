@@ -18,8 +18,7 @@ def add_Packages():
     query="insert into D_PACKAGES(code,low_range,high_range) values("+Packages_name+","+Low_Range+","+High_Range+")"
     db_config = dbConnect.read_db_config()
     result=dbConnect.execute_sql(db_config,query)
-    return redirect(url_for('home'))
-
+    return render_template('sucess.html')
 @app.route('/update_Packages', methods=['POST'])
 def update_Packages():
     Packages_name = str(request.form['PackagesName'])
@@ -29,8 +28,7 @@ def update_Packages():
     db_config = dbConnect.read_db_config()
     result=dbConnect.execute_sql(db_config,query)
     print(query)
-    return redirect(url_for('home'))
-
+    return render_template('sucess.html')
 @app.route('/delete_Packages', methods=['POST'])
 def delete_Packages():
     Packages_name = str(request.form['PackagesName'])
@@ -38,7 +36,7 @@ def delete_Packages():
     db_config = dbConnect.read_db_config()
     result=dbConnect.execute_sql(db_config,query)
     print(query)
-    return redirect(url_for('home'))
+    return render_template('sucess.html')
 
 @app.route('/view_Packages', methods=['POST'])
 def view_Packages():
@@ -72,8 +70,7 @@ def add_client():
     db_config = dbConnect.read_db_config()
     result=dbConnect.execute_sql(db_config,query)
     
-    return redirect(url_for('home'))
-
+    return render_template('sucess.html')
 @app.route('/update_client', methods=['POST'])
 def update_client():
     client_id = str(request.form['clientId'])
@@ -88,8 +85,7 @@ def update_client():
     print("done")
     flash("NOT UPDATED")
     print("except")
-    return redirect(url_for('home'))
-
+    return render_template('sucess.html')
 @app.route('/delete_client', methods=['POST'])
 def delete_client():
     print("in")
@@ -105,8 +101,7 @@ def delete_client():
         flash('Client deleted successfully!')
     else:
         flash('Client not found!')
-    return redirect(url_for('home'))
-
+    return render_template('sucess.html')
 @app.route('/view_client', methods=['POST'])
 def view_client():
     client_id = str(request.form['clientId'])
@@ -142,8 +137,7 @@ def create_event():
     db_config = dbConnect.read_db_config()
     result=dbConnect.execute_sql(db_config,query)
     flash('Event created successfully!')
-    return redirect(url_for('home'))
-
+    return render_template('sucess.html')
 @app.route('/update_event', methods=['POST'])
 def update_event():
     event_id = str(request.form['eventId'])
@@ -159,16 +153,14 @@ def update_event():
     print(query)
     db_config = dbConnect.read_db_config()
     result=dbConnect.execute_sql(db_config,query)
-    return redirect(url_for('home'))
-
+    return render_template('sucess.html')
 @app.route('/cancel_event', methods=['POST'])
 def cancel_event():
     event_id = str(request.form['eventId'])
     query="DELETE FROM d_events WHERE ID = "+event_id
     db_config = dbConnect.read_db_config()
     result=dbConnect.execute_sql(db_config,query)
-    return redirect(url_for('home'))
-
+    return render_template('sucess.html')
 @app.route('/view_event', methods=['POST'])
 def view_event():
     event_id = str(request.form['eventId'])
@@ -202,8 +194,7 @@ def new_booking():
     query="INSERT INTO d_themes(code,description) VALUES("+Theme_id+",'"+Theme_desc+"')"
     db_config = dbConnect.read_db_config()
     result=dbConnect.execute_sql(db_config,query)
-    return redirect(url_for('home'))
-
+    return render_template('sucess.html')
 @app.route('/update_booking', methods=['POST'])
 def update_booking():
     Theme_desc = str(request.form['bookingClient'])
@@ -211,16 +202,14 @@ def update_booking():
     query="UPDATE D_THEMES SET DESCRIPTION = '"+Theme_desc+"' WHERE CODE = "+Theme_id
     db_config = dbConnect.read_db_config()
     result=dbConnect.execute_sql(db_config,query)
-    return redirect(url_for('home'))
-
+    return render_template('sucess.html')
 @app.route('/cancel_booking', methods=['POST'])
 def cancel_booking():
     Theme_id = str(request.form['bookingId'])
     query="DELETE FROM D_THEMES WHERE CODE = "+Theme_id
     db_config = dbConnect.read_db_config()
     result=dbConnect.execute_sql(db_config,query)
-    return redirect(url_for('home'))
-
+    return render_template('sucess.html')
 @app.route('/view_booking', methods=['POST'])
 def view_booking():
     theme_id = str(request.form['bookingId'])
@@ -241,8 +230,8 @@ def view_booking():
     return redirect(url_for('home'))
 
 # Payment Management Routes
-@app.route('/add_payment', methods=['POST'])
-def add_payment():
+@app.route('/add_CD', methods=['POST'])
+def add_CD():
     id = request.form['CDId']
     title = request.form['CDClient']
     year = request.form['CDAmount']
@@ -250,26 +239,25 @@ def add_payment():
     db_config = dbConnect.read_db_config()
     result=dbConnect.execute_sql(db_config,query)
     flash('Payment added successfully!')
-    return redirect(url_for('home'))
-
-@app.route('/update_payment', methods=['POST'])
-def update_payment():
+    return render_template('sucess.html')
+@app.route('/update_CD', methods=['POST'])
+def update_CD():
     id = request.form['CDId']
     title = request.form['CDClient']
     year = request.form['CDAmount']
     query="UPDATE D_CDS SET TITLE = '"+title+"',year = "+year+" WHERE CD_NUMBER = "+id
     db_config = dbConnect.read_db_config()
     result=dbConnect.execute_sql(db_config,query)
-    return redirect(url_for('home'))
-
-@app.route('/delete_payment', methods=['POST'])
-def delete_payment():
+    return render_template('sucess.html')
+@app.route('/delete_CD', methods=['POST'])
+def delete_CD():
     id = request.form['CDId']
     query="DELETE FROM D_CDS WHERE CD_NUMBER = "+id
-    return redirect(url_for('home'))
-
-@app.route('/view_payment', methods=['POST'])
-def view_payment():
+    db_config = dbConnect.read_db_config()
+    result=dbConnect.execute_sql(db_config,query)
+    return render_template('sucess.html')
+@app.route('/view_CD', methods=['POST'])
+def view_CD():
     id = request.form['CDId']
     query="select * from D_CDS where code="+id
     db_config = dbConnect.read_db_config()
